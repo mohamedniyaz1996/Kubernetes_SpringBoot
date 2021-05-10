@@ -35,3 +35,15 @@ spec:
                 name: hostname-config
                 key: postgres_host
         image: mohamedniyaz/kubernetes_assignment:springbootapp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-postgres-sample
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+  selector:
+    app: spring-boot-postgres-sample
+
