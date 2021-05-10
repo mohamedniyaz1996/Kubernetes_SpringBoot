@@ -19,21 +19,6 @@ spec:
         env:
           - name: SPRING_DATASOURCE_URL
             value: jdbc:postgresql://postgres:5432/postgres
-          - name: POSTGRES_USER
-            valueFrom:
-              configMapKeyRef:
-                name: postgres-config
-                key: postgres_user
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: postgres-config
-                key: postgres_password
-          - name: POSTGRES_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: hostname-config
-                key: postgres_host
         image: mohamedniyaz/kubernetes_assignment:springbootapp
 ---
 apiVersion: v1
