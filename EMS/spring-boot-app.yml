@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-postgres-sample
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-postgres-sample
+  template:
+    metadata:
+      name: spring-boot-postgres-sample
+      labels:
+        app: spring-boot-postgres-sample
+    spec:
+      containers:
+      - name: spring-boot-postgres-sample
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: jdbc:postgresql://postgres:5432/postgres
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: postgres-config
+                key: postgres_user
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: postgres-config
+                key: postgres_password
+          - name: POSTGRES_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: hostname-config
+                key: postgres_host
+        image: mohamedniyaz/kubernetes_assignment:springbootapp
